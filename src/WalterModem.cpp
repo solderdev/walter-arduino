@@ -529,6 +529,8 @@ uint16_t WalterModem::_modemFirmwareUpgradeStart(void)
   ESP_LOGD("WalterModem", "started STP mode, got %d:%s", len, _blueCherry.otaBuffer);
 
   size_t bytesSent, bytesReceived;
+  (void)bytesSent;
+  (void)bytesReceived;
 
   stpRequest.signature = _switchEndian32(WALTER_MODEM_STP_SIGNATURE_REQUEST);
   stpRequest.operation = WALTER_MODEM_STP_OPERATION_RESET;
@@ -610,6 +612,8 @@ void WalterModem::_modemFirmwareUpgradeFinish(bool success)
 
   /* send final STP reset command after transfer */
   size_t bytesSent, bytesReceived;
+  (void)bytesSent;
+  (void)bytesReceived;
 
   stpRequest.signature = _switchEndian32(WALTER_MODEM_STP_SIGNATURE_REQUEST);
   stpRequest.operation = WALTER_MODEM_STP_OPERATION_RESET;
@@ -707,6 +711,8 @@ void WalterModem::_modemFirmwareUpgradeFinish(bool success)
 void WalterModem::_modemFirmwareUpgradeBlock(size_t blockSize, uint32_t transactionId)
 {
   size_t bytesSent, bytesReceived;
+  (void)bytesSent;
+  (void)bytesReceived;
 
   /* STP transfer block command: specify block size */
   stpRequestTransferBlockCmd.blockSize = _switchEndian16(blockSize);
@@ -1649,7 +1655,7 @@ void WalterModem::_processQueueRsp(WalterModemCmd* cmd, WalterModemBuffer* buff)
           cmd->rsp->data.simCardID.iccid[offset] = '\0';
           inICCID = false;
           offset = 0;
-          i += 2; 
+          i += 2;
           continue;
         }
 
